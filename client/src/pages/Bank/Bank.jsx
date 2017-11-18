@@ -109,20 +109,6 @@ var fakePickups = [
   },
 ]
 
-var fakeUser = {
-  id: 1,
-  name: 'West Oakland Food Pantry',
-  phone: '(123)456-7890',
-  email: 'wofp@gmail.com',
-  address: {
-    streetAddress: '123 Fake St',
-    city: 'Oakland',
-    state: 'CA',
-    zip: 94612,
-    lat: 11.1111,
-    lng: 11.1111,
-  }
-}
 
 export default class Bank extends Component {
   constructor(props) {
@@ -130,7 +116,6 @@ export default class Bank extends Component {
     this.state = {
       pickups: fakePickups,
       claims: fakePickups,
-      user: fakeUser,
     };
 
     this.acceptClaim = this.acceptClaim.bind(this);
@@ -138,31 +123,23 @@ export default class Bank extends Component {
     this.completeClaim = this.completeClaim.bind(this);
   }
 
-  componentDidMount() {
-    this.fetchUserInfo()
-    .then(() => {
-      this.fetchPickups();
-      this.fetchClaims();
-    });
-  }
-
-  fetchUserInfo() {
-    return axios.get(`/user?id=${this.state.user.id}`)
-    .then((response) => this.setState({user: response.data}));
+  componentWillMount() {
+    this.fetchPickups();
+    this.fetchClaims();
   }
 
   fetchPickups() {
-    return axios.get(`/pickups?userid=${this.state.user.id}`)
+    return axios.get(`/pickups?userid=${this.props.user.id}`)
     .then((response) => this.setState({pickups: response.data}));
   }
 
   fetchClaims() {
-    return axios.get(`/claims?userid=${this.state.user.id}`)
+    return axios.get(`/claims?userid=${this.props.user.id}`)
     .then((response) => this.setState({claims: response.claims}));
   }
 
   acceptClaim(claimId) {
-    return axios.post(`/claims/accept`, {userId: this.state.user.id, claimId})
+    return axios.post(`/claims/accept`, {userId: this.props.user.id, claimId})
     .then(() => {
       this.fetchClaims();
       this.fetchPickups();
@@ -170,7 +147,7 @@ export default class Bank extends Component {
   }
 
   cancelClaim(claimId) {
-    return axios.post(`/claims/cancel`, {userId: this.state.user.id, claimId})
+    return axios.post(`/claims/cancel`, {userId: this.props.user.id, claimId})
     .then(() => {
       this.fetchClaims();
       this.fetchPickups();
@@ -178,7 +155,7 @@ export default class Bank extends Component {
   }
 
   completeClaim(claimId) {
-    return axios.post(`/claims/complete`, {userId: this.state.user.id, claimId})
+    return axios.post(`/claims/complete`, {userId: this.props.user.id, claimId})
     .then(() => {
       this.fetchClaims();
     });
