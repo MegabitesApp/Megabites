@@ -1,17 +1,17 @@
 import React, { Component } from 'react';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import { FlatButton } from 'material-ui';
+import AppBar from 'material-ui/AppBar';
 import Home from './pages/Home/Home.jsx';
 import Donor from './pages/Donor/Donor.jsx';
 import Bank from './pages/Bank/Bank.jsx';
-import AppBar from 'material-ui/AppBar';
 
 var fakeUser = {
   id: 1,
   name: 'West Oakland Food Pantry',
   phone: '(123)456-7890',
   email: 'wofp@gmail.com',
-  type: 'DONOR',
+  type: 'RECEIVER',
   address: {
     streetAddress: '123 Fake St',
     city: 'Oakland',
@@ -22,11 +22,37 @@ var fakeUser = {
   }
 }
 
+var fakeBank = {"id": 1,
+              "name": "SF-Marin Food Bank",
+              "phone": "(415)282-1900",
+              "email": "paul@sf-marinfoodbank.org",
+              "type": "RECEIVER",
+              "address": {
+                  "address": "900 Pennsylvania Ave., SF, CA 94107",
+                  "lat": 37.7544355,
+                  "lng": -122.395706,
+                  }
+              };
+
+var fakeDonor = {"id": 1,
+              "name": "Chez Panisse",
+              "phone": "(510) 548-5525",
+              "email": "alice@chezpanisse.com",
+              "type": "DONOR",
+              "address": {
+                  "address": "1517 Shattuck Ave, Berkeley, CA 94709",
+                  "lat": 37.8796128,
+                  "lng": -122.2710068,
+                  }
+              }
+
+
+
 export default class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      user: fakeUser,
+      user: fakeBank,
     }
   }
 
@@ -47,7 +73,7 @@ export default class App extends Component {
     return (
       <MuiThemeProvider>
         <div>
-          <AppBar title="Megabites" iconElementRight={label}/>
+          <AppBar title="Megabites" iconElementLeft={<img src="Logo.png" height="50" />} iconElementRight={label}/>
           { activeView }
         </div>
       </MuiThemeProvider>
