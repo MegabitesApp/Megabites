@@ -1,6 +1,7 @@
 body {
   margin: 0;
   min-height: 100vh;
+  font-family: 'Roboto', sans-serif;
 }
 
 #root {
@@ -74,6 +75,39 @@ body {
 
 .claim-button-cluster > * {
   width: 47%;
+}
+
+
+.donor-paper {
+  margin: 3%;
+}
+
+.text-fields {
+  display: flex;
+  justify-content: space-around;
+  space
+}
+
+.input-card {
+  padding-top: 15px !important;
+
+}
+
+.text-fields > * {
+  font-size: 18px;
+  padding: 5px;
+  border-radius: 3px;
+  width: 45%;
+}
+
+.donor-button-cluster {
+  padding: 10px;
+  display: flex;
+  justify-content: space-around;
+}
+
+.donor-button-cluster > * {
+  width: 45%;
 }
 
 @media only screen and (min-width: 768px) {

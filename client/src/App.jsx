@@ -29,8 +29,8 @@ var fakeBank = {"id": 1,
               "type": "RECEIVER",
               "address": {
                   "address": "900 Pennsylvania Ave., SF, CA 94107",
-                  "lat": 37.7544355,
-                  "lng": -122.395706,
+                  lat: 11.1111,
+                  lng: 11.1111,
                   }
               };
 
@@ -41,8 +41,8 @@ var fakeDonor = {"id": 1,
               "type": "DONOR",
               "address": {
                   "address": "1517 Shattuck Ave, Berkeley, CA 94709",
-                  "lat": 37.8796128,
-                  "lng": -122.2710068,
+                  lat: 11.1111,
+                  lng: 11.1111,
                   }
               }
 

@@ -16,13 +16,12 @@ export default class FeedListing extends Component {
 
   render() {
     var { name, email, phone, address, foodItems } = this.props;
-    var { streetAddress, city, state, zip } = address;
-    var addressString = streetAddress + ', ' + city + ', ' + state + ' ' + zip;
+    var streetAddress = address.streetAddress;
     return (
       <Card className="FeedListing">
         <CardHeader
           title={name}
-          subtitle={addressString}
+          subtitle={streetAddress}
           actAsExpander={true}
           showExpandableButton={true}
         />
